@@ -1,14 +1,20 @@
 package pl.pali.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import pl.pali.model.Book;
+import pl.pali.services.MemoryBookService;
 
 @RestController
 @RequestMapping("/books")
 public class BookController {
 
+    private MemoryBookService memoryBookService;
 
+    @Autowired
+    public BookController(MemoryBookService memoryBookService) {
+        this.memoryBookService = memoryBookService;
+    }
 
     @RequestMapping("/helloBook")
     public Book helloBook() {
@@ -17,4 +23,8 @@ public class BookController {
 
     }
 
+    @GetMapping("/{id}")
+    public Book getBook (@PathVariable Long id){
+        return this.memoryBookService.memoryGetBook(id);
+    }
 }

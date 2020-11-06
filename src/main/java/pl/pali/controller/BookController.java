@@ -21,19 +21,16 @@ public class BookController {
     @GetMapping("/books")
     public List<Book> helloBook() {
         return this.memoryBookService.memoryGetBooks();
-
     }
 
     @GetMapping("/{id}")
     public Book getBook(@PathVariable Long id) {
-        return this.memoryBookService.memoryGetBook(id);
+        return this.memoryBookService.getBook(id);
     }
 
-    @PostMapping()
-    public Book newBook() {
-
-        Book book = new Book();
-        return book;
+    @PostMapping("/add")
+    public void newBook(@RequestBody Book book) {
+        this.memoryBookService.addBook(book);
     }
 
 

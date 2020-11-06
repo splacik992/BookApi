@@ -2,4 +2,5 @@ pl/pali/AppInitializer.class
 pl/pali/controller/BookController.class
 pl/pali/AppConfiguration.class
 pl/pali/model/Book.class
+pl/pali/BookInterface.class
 pl/pali/services/MemoryBookService.class

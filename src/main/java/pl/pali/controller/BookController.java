@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.pali.model.Book;
 import pl.pali.services.MemoryBookService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -16,15 +18,23 @@ public class BookController {
         this.memoryBookService = memoryBookService;
     }
 
-    @RequestMapping("/helloBook")
-    public Book helloBook() {
-        return new Book(1L, "9788324631766", "Thinking in Java",
-                "Bruce Eckel", "Helion", "programming");
+    @GetMapping("/books")
+    public List<Book> helloBook() {
+        return this.memoryBookService.memoryGetBooks();
 
     }
 
     @GetMapping("/{id}")
-    public Book getBook (@PathVariable Long id){
+    public Book getBook(@PathVariable Long id) {
         return this.memoryBookService.memoryGetBook(id);
     }
+
+    @PostMapping()
+    public Book newBook() {
+
+        Book book = new Book();
+        return book;
+    }
+
+
 }

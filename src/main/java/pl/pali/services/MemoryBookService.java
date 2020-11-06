@@ -3,6 +3,7 @@ package pl.pali.services;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import pl.pali.BookInterface;
 import pl.pali.model.Book;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-public class MemoryBookService {
+public class MemoryBookService implements BookInterface {
 
     List<Book> books;
     private static Long nextId = 4L;
@@ -34,19 +35,6 @@ public class MemoryBookService {
         return new ArrayList<>(books);
     }
 
-
-
-    public Book memoryGetBook(Long id) {
-        Book book = null;
-        for (Book books : books) {
-            if (books.getId().equals(id)) {
-                book = books;
-
-            }
-        }
-        return book;
-    }
-
     public Book memoryUpdateBook(Long id, String isbn, String author, String publisher, String type) {
         Book book = null;
         for (Book bookToUpdate : books) {
@@ -63,4 +51,37 @@ public class MemoryBookService {
         return book;
     }
 
+    public Book memoryAddBook() {
+        Book newbook = new Book();
+        for (Book book : books) {
+            if (book.getId().equals(newbook.getId())) {
+                System.out.println("false");
+            } else {
+                books.add(newbook);
+            }
+        }
+        return newbook;
+    }
+
+    @Override
+    public List<Book> showAll() {
+        return null;
+    }
+
+    @Override
+    public Book getBook(Long id) {
+        Book book = null;
+        for (Book books : books) {
+            if (books.getId().equals(id)) {
+                book = books;
+            }
+        }
+        return book;
+    }
+
+    @Override
+    public void addBook(Book book) {
+        book.setId(nextId++);
+        books.add(book);
+    }
 }

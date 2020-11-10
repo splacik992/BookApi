@@ -9,6 +9,7 @@ import pl.pali.model.Book;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class MemoryBookService implements BookInterface {
@@ -55,11 +56,20 @@ public class MemoryBookService implements BookInterface {
 
     @Override
     public void update(Book book) {
-
+        if (this.getId(book.getId()).isPresent()) {
+            int indexOf = books.indexOf(this.getId(book.getId()).get());
+            books.set(indexOf, book);
+        }
     }
 
     @Override
     public void delete(Long id) {
         books.removeIf(book1 -> book1.getId().equals(id));
+    }
+
+    @Override
+    public Optional<Book> getId(Long id) {
+            return books.stream().filter(item -> item.getId().equals(id)).findFirst();
+
     }
 }

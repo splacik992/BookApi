@@ -33,9 +33,14 @@ public class BookController {
         this.memoryBookService.addBook(book);
     }
 
-    @RequestMapping(value = "/delete/{id}")
+    @RequestMapping(value = "/{id}")
     public void deleteBook(@PathVariable Long id){
         this.memoryBookService.delete(id);
     }
 
+    @PutMapping("")
+    @ResponseBody
+    public void updateBook(@RequestBody Book book) {
+        this.memoryBookService.update(book);
+    }
 }

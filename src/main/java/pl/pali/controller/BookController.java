@@ -20,7 +20,7 @@ public class BookController {
 
     @GetMapping("/books")
     public List<Book> helloBook() {
-        return this.memoryBookService.memoryGetBooks();
+        return this.memoryBookService.showAll();
     }
 
     @GetMapping("/{id}")

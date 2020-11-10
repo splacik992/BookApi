@@ -31,26 +31,6 @@ public class MemoryBookService implements BookInterface {
 
     }
 
-    public List<Book> memoryGetBooks() {
-        return new ArrayList<>(books);
-    }
-
-    public Book memoryUpdateBook(Long id, String isbn, String author, String publisher, String type) {
-        Book book = null;
-        for (Book bookToUpdate : books) {
-            if (bookToUpdate.getId().equals(id)) {
-                bookToUpdate.setAuthor(author);
-                bookToUpdate.setIsbn(isbn);
-                bookToUpdate.setPublisher(publisher);
-                bookToUpdate.setType(type);
-                book = bookToUpdate;
-            } else {
-                throw new NoSuchElementException("Book is not exist!");
-            }
-        }
-        return book;
-    }
-
     public Book memoryAddBook() {
         Book newbook = new Book();
         for (Book book : books) {
@@ -65,7 +45,7 @@ public class MemoryBookService implements BookInterface {
 
     @Override
     public List<Book> showAll() {
-        return null;
+        return new ArrayList<>(books);
     }
 
     @Override
@@ -83,5 +63,15 @@ public class MemoryBookService implements BookInterface {
     public void addBook(Book book) {
         book.setId(nextId++);
         books.add(book);
+    }
+
+    @Override
+    public void update(Book book) {
+
+    }
+
+    @Override
+    public void delete(Book book) {
+
     }
 }

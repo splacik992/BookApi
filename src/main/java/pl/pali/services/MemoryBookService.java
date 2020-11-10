@@ -31,18 +31,6 @@ public class MemoryBookService implements BookInterface {
 
     }
 
-    public Book memoryAddBook() {
-        Book newbook = new Book();
-        for (Book book : books) {
-            if (book.getId().equals(newbook.getId())) {
-                System.out.println("false");
-            } else {
-                books.add(newbook);
-            }
-        }
-        return newbook;
-    }
-
     @Override
     public List<Book> showAll() {
         return new ArrayList<>(books);
@@ -71,7 +59,7 @@ public class MemoryBookService implements BookInterface {
     }
 
     @Override
-    public void delete(Book book) {
-
+    public void delete(Long id) {
+        books.removeIf(book1 -> book1.getId().equals(id));
     }
 }

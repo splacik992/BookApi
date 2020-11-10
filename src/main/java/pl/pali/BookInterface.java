@@ -9,7 +9,7 @@ public interface BookInterface {
     Book getBook(Long id);
     void addBook(Book book);
     void update(Book book);
-    void delete(Book book);
+    void delete(Long id);
 
 
 }

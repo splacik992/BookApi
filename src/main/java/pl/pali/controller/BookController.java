@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private MemoryBookService memoryBookService;
+    private final MemoryBookService memoryBookService;
 
     @Autowired
     public BookController(MemoryBookService memoryBookService) {

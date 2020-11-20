@@ -5,9 +5,9 @@ import pl.pali.model.Book;
 import java.util.List;
 import java.util.Optional;
 
-public interface BookInterface {
+public interface BookService {
     List<Book> showAll();
-    Book getBook(Long id);
+    Optional<Book> getBook(Long id);
     void addBook(Book book);
     void update(Book book);
     void delete(Long id);

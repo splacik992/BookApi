@@ -1,18 +1,15 @@
 package pl.pali.services;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import pl.pali.BookInterface;
+import pl.pali.BookService;
 import pl.pali.model.Book;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class MemoryBookService implements BookInterface {
+public class MemoryBookService implements BookService {
 
     List<Book> books;
     private static Long nextId = 4L;
@@ -38,7 +35,7 @@ public class MemoryBookService implements BookInterface {
     }
 
     @Override
-    public Book getBook(Long id) {
+    public Optional<Book> getBook(Long id) {
         Book book = null;
         for (Book books : books) {
             if (books.getId().equals(id)) {
